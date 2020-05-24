@@ -4,7 +4,7 @@ import { INoteSequence } from "@magenta/music";
 
 import { Pause, Play } from "@styled-icons/boxicons-regular";
 
-import { player } from "../../../tfjs/globalConfig";
+import { player } from "../../../audio/globalConfig";
 
 interface Props {
   sequences: INoteSequence[]

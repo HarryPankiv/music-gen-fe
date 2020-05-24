@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { generateMusic } from "../../tfjs/generateMusic";
-import { modes, scalesByMode, keys } from "../../audio/constants";
+import { generateMusic } from "../../audio/playerConfig";
+import { modes, scalesByMode, keys } from "../../audio/enums";
 import { RadioButtonGroup, RangeInput, Box, Button } from "grommet";
 
 export const GenerateAudioPage = () => {

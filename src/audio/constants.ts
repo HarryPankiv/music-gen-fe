@@ -1,30 +1,8 @@
-export const modes = ["major", "minor"];
+export const MAX_PAN = 0.2;
+export const STEPS_PER_QUARTER = 24;
+export const Z_DIM = 256;
+export const QPM = 120;
+export const HUMANIZE_SECONDS = 0.01;
+export const MIN_DRUM = 35;
+export const MAX_DRUM = 81;
 
-export const keys = ['C', 'C#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-
-const majorScales = [
-  "major",
-  "mixolydian",
-  "lydian",
-  "phrygian dominant",
-  "harmonic major",
-  "major pentatonic",
-  "whole tone",
-];
-
-const minorScales = [
-  "aeolian",
-  "dorian",
-  "harmonic minor",
-  "melodic minor",
-  "phrygian",
-  "minor pentatonic",
-  "minor hexatonic",
-  "prometheus",
-];
-
-export const scalesByMode = {
-  minor: minorScales,
-  major: majorScales,
-};
-// const notes = Tonal.Note.names(); // Array 0-16 ("C", "C#", "Db", ...)
