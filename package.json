@@ -3,21 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@magenta/music": "^1.15.0",
+    "@tensorflow/tfjs": "^1.7.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tonaljs/tonal": "^4.0.1",
+    "@types/file-saver": "^2.0.1",
+    "@types/ramda": "^0.27.6",
+    "@types/react-router": "^5.1.7",
     "@umijs/hooks": "^1.9.2",
+    "copy-to-clipboard": "^3.3.1",
+    "file-saver": "^2.0.2",
+    "grommet": "^2.13.0",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-spinners-css": "^1.1.8",
+    "styled-components": "^5.1.0",
+    "styled-icons": "^10.2.1",
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettify": "prettier --write ./src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "2.0.5"
   }
 }
