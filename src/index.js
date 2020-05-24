@@ -4,7 +4,7 @@ import { GenerateAudioPage } from "./pages/GenerateAudioPage";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import { Route } from "react-router";
-import { GeneratedAudio } from "./pages/GeneratedAudioPage/GeneratedAudio";
+import { GeneratedAudio } from "./pages/GeneratedAudioPage";
 import { Grommet } from "grommet";
 import { theme } from "./theme/theme";
 
