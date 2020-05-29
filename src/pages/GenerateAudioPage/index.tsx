@@ -1,57 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
-import { generateMusic } from "../../audio/playerConfig";
-import { modes, scalesByMode, keys } from "../../audio/enums";
-import { RadioButtonGroup, RangeInput, Box, Button } from "grommet";
+import { modes, keys } from "../../audio/enums";
+import { Box, Button, Heading, ResponsiveContext } from "grommet";
+import { useRequest, useUpdateEffect } from "@umijs/hooks";
+import { getBaseURL } from "../../api/getBaseURL";
+import { ScreenLoader } from "../../components/ScreenLoader";
+import { ChooseChordProgression } from "../../components/ChooseChordProgression";
+import { TonicSelector } from "./Components/TonicSelector";
+import { ModeSelector } from "./Components/ModeSelector";
+import { ScaleSelector } from "./Components/ScaleSelector";
+import { TempoRangeInput } from "./Components/TempoRangeInput";
 
 export const GenerateAudioPage = () => {
+  const { data, loading, run: requestMusicGenerate } = useRequest(
+    (data) => ({
+      url: "/generateAudio",
+      prefix: getBaseURL(),
+      method: "post",
+      data,
+    }),
+    { manual: true }
+  );
+  const size = useContext(ResponsiveContext);
+  const width = {
+    large: "900px",
+    medium: "760px",
+    small: "320px",
+  };
+
   const { push } = useHistory();
-  const [tonic, setTonic] = useState("");
-  const [mode, setMode] = useState("");
-  const [scale, setScale] = useState("");
-  const [tempo, setTempo] = useState("");
+  const [tonic, setTonic] = useState("C");
+  const [mode, setMode] = useState("major");
+  const [scale, setScale] = useState("ionian");
+  const [tempo, setTempo] = useState(120);
+  const [chordProgression, setChordProgression] = useState([]);
+
+  useUpdateEffect(() => {
+    push("/generated/:id");
+  }, [data]);
+
+  if (loading) {
+    return <ScreenLoader />;
+  }
 
   const generate = () => {
-    const scale = "F";
-
-    generateMusic(scale);
-    push("/generated/:id");
+    requestMusicGenerate({
+      tonic,
+      mode,
+      scale,
+      tempo,
+      chordProgression,
+    });
   };
 
   return (
-    <Box
-      margin="10% 15%"
-      // background="rgba(61, 19, 141, 0.1);"
-      pad="40px"
-    >
-      <RadioButtonGroup
-        name="keys"
-        options={keys}
-        onChange={(e) => setTonic(e.target.value)}
-        value={tonic}
-      />
-      <RadioButtonGroup
-        name="modes"
-        options={modes}
-        onChange={(e) => setMode(e.target.value)}
-        value={mode}
-      />
+    <Box width={width[size]} pad="40px" align="center" alignSelf="center">
+      <Heading textAlign="center">Create machine learning driven music</Heading>
+      {/* <Heading as="small" level="6" color="light-6">using @magenta/music and TensorFlow.js</Heading> */}
+
+      <TonicSelector keys={keys} tonic={tonic} setTonic={setTonic} />
+      <ModeSelector modes={modes} mode={mode} setMode={setMode} />
+      <ScaleSelector mode={mode} scale={scale} setScale={setScale} />
       {mode && (
-        <RadioButtonGroup
-          name="scale"
-          options={scalesByMode[mode]}
-          onChange={(e) => setScale(e.target.value)}
-          value={scale}
+        <ChooseChordProgression
+          mode={mode}
+          setChordProgression={setChordProgression}
         />
       )}
-      <RangeInput
-        name="tempo"
-        min={30}
-        max={180}
-        value={tempo}
-        onChange={(e) => setTempo(e.target.value)}
-      />
-      <Button onClick={generate}>generate music</Button>
+      <TempoRangeInput tempo={tempo} setTempo={setTempo} />
+      <Box
+        align="center"
+        width="260px"
+        margin={{ bottom: "50px", top: "50px" }}
+      >
+        <Button primary onClick={generate} label="Generate music" />
+      </Box>
     </Box>
   );
 };
