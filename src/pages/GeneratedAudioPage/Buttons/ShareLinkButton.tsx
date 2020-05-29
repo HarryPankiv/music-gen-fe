@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "grommet";
-import { useRouteMatch } from "react-router";
 import copy from "copy-to-clipboard";
-// import { Share } from "grommet-icons";
+import { useRouteMatch } from "react-router";
+
 import { ShareAlternative } from "@styled-icons/entypo/ShareAlternative";
 
 export const ShareLinkButton = () => {

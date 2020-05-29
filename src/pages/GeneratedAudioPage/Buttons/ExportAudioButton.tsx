@@ -8,7 +8,7 @@ export const ExportAudioButton = () => {
     <Button
       onClick={exportAudio}
       label="Export .mp3"
-      icon={<Music color="brand" size="medium" />}
+      // icon={<Music color="brand" size="medium" />}
       margin="small"
       reverse
     />
