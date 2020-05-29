@@ -1,20 +1,38 @@
 import { ThemeType } from "grommet";
 
 export const theme: ThemeType = {
-    global: {
-        font: {
-            family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-        },
-        colors: {
-            text: "brand"
-        }
+  global: {
+    font: {
+      family: "'Open Sans', sans-serif;",
     },
-    button: {
-        
-    },
-    icon: {
-        size: {
-            medium: "18px"
-        }
+    colors: {
+      brand: "#0094F5",
+      "accent-1": "#0094F5"
     }
+  },
+  button: {
+    primary: {
+      extend: "padding: 16px 52px; border-radius: 100px; &:hover { background: #0094F5; };"
+    },
+    padding: { vertical: "8px", horizontal: "36px" },
+    extend: " &:hover { background: rgba(0, 148, 245, 0.1); } ",
+    border: {
+      radius: "100px"
+    }
+  },
+  rangeInput: {
+    track: {
+      height: "2px"
+    }
+  },
+  icon: {
+    size: {
+      medium: "18px"
+    }
+  },
+  select: {
+    control: {
+      extend: `border-radius: 100px`
+    },
+  }
 }
