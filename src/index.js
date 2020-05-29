@@ -1,21 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { GenerateAudioPage } from "./pages/GenerateAudioPage";
+import { Grommet, Box } from "grommet";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import { Route } from "react-router";
-import { GeneratedAudio } from "./pages/GeneratedAudioPage";
-import { Grommet } from "grommet";
+
 import { theme } from "./theme/theme";
+import { Routes } from "./router/routes";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Grommet theme={theme}>
-        <Route path="/" component={GenerateAudioPage} exact />
-        <Route path="/generated/:id" component={GeneratedAudio} />
-      </Grommet>
-    </BrowserRouter>
+    <Grommet theme={theme} full={true}>
+      <Box background="#202445" height="100vh">
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </Box>
+    </Grommet>
   </React.StrictMode>,
   document.getElementById("root")
 );
