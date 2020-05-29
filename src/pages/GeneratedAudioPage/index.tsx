@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useRequest } from "@umijs/hooks";
-import { Ouroboro } from "react-spinners-css";
 import { Heading, Box, Button } from "grommet";
 
 import { ExportAudioButton } from "./Buttons/ExportAudioButton";
@@ -9,20 +8,20 @@ import { ExportMidiButton } from "./Buttons/ExportMidiButton";
 import { ShareLinkButton } from "./Buttons/ShareLinkButton";
 
 import { Player } from "./Player/Player";
+import { getBaseURL } from "../../api/getBaseURL";
+import { ScreenLoader } from "../../components/ScreenLoader";
 
 export const GeneratedAudio = () => {
   const { push } = useHistory() 
   const { data, loading } = useRequest({
     url: "/:id",
     type: "get",
-    prefix: "http://asd.com",
+    prefix: getBaseURL(),
   });
 
   if (loading) {
-    return <Ouroboro />;
+    return <ScreenLoader />;
   }
-
-  console.log(data);
 
   // if (!data) {
   //   return <div>
@@ -33,16 +32,16 @@ export const GeneratedAudio = () => {
   return (
     <Box
       margin="10% 15%"
-      // background="rgba(61, 19, 141, 0.1);"
+      align="center"
       pad="40px"
     >
-      <Box width="240px">
-        <Button label="Generate new sequence" size="small" onClick={() => push('/')} />
+      <Heading>Hey, here is your sequence</Heading>
+      <Box margin={{bottom: "60px"}}>
+        <Button primary label="Generate new sequence" size="medium" onClick={() => push('/')} />
       </Box>
-      <Heading>Generated sequence</Heading>
       {/* <Player sequences={data.instruments} /> */}
       <Player sequences={data?.sequences} />
-      <Box justify="between" direction="row">
+      <Box justify="between" direction="row" margin={{top: "60px"}}>
         <ExportAudioButton />
         <ExportMidiButton />
         <ShareLinkButton />

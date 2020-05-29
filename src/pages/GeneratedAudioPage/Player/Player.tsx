@@ -4,7 +4,7 @@ import { INoteSequence } from "@magenta/music";
 
 import { Pause, Play } from "@styled-icons/boxicons-regular";
 
-import { player } from "../../../audio/globalConfig";
+// import { player } from "../../../audio/globalConfig";
 
 interface Props {
   sequences: INoteSequence[]
@@ -54,7 +54,7 @@ export const Player = ({ sequences }: Props) => {
   };
 
   return (
-    <Box>
+    <Box width="100%">
       <RangeInput
         name="current"
         onChange={(e) => {
