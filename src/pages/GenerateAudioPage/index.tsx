@@ -36,7 +36,7 @@ export const GenerateAudioPage = () => {
   const [chordProgression, setChordProgression] = useState([]);
 
   useUpdateEffect(() => {
-    push("/generated/:id");
+    push(`/generated/${data.projectId}`);
   }, [data]);
 
   if (loading) {
