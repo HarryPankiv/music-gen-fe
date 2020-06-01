@@ -10,11 +10,11 @@ import { Routes } from "./router/routes";
 ReactDOM.render(
   <React.StrictMode>
     <Grommet theme={theme} full={true}>
-      <Box background="#202445" height="100vh">
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </Box>
+        <Box background="#202445" height={{min: "100vh"}} overflow="unset">
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </Box>
     </Grommet>
   </React.StrictMode>,
   document.getElementById("root")
