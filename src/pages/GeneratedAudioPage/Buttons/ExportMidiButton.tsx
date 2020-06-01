@@ -1,33 +1,52 @@
 import React from "react";
-import { Button } from "grommet";
+import { isEmpty } from "ramda";
+import { Button, Box } from "grommet";
+import { saveAs } from "file-saver";
 import { DocumentDownload } from "grommet-icons";
-import { useRequest } from "@umijs/hooks";
+import { useRequest, useUpdateEffect } from "@umijs/hooks";
+
 import { useRouteMatch } from "react-router";
+import { getBaseURL } from "../../../api/getBaseURL";
 import { sequenceProtoToMidi } from "@magenta/music";
+import { ScreenLoader } from "../../../components/ScreenLoader";
 
 export const ExportMidiButton = () => {
   const match = useRouteMatch<{ id }>();
-  const { data: sequence, run: requestExportMidi } = useRequest(
-    { url: `/${match.params.id}/export-midi` },
+  const {
+    data: sequence = { notes: [] },
+    loading,
+    run: requestExportMidi,
+  } = useRequest(
+    {
+      prefix: getBaseURL(),
+      url: `/exportMidi?projectId=${match.params.id}`,
+      method: "post",
+    },
     { manual: true }
   );
 
-  const exportMidi = async () => {
-    await requestExportMidi();
-    const midi = sequenceProtoToMidi(sequence);
-    const file = new Blob([midi], { type: "audio/midi" });
+  useUpdateEffect(() => {
+    if (!isEmpty(sequence.notes)) {
+      const midi = sequenceProtoToMidi(sequence);
+      const file = new Blob([midi], { type: "audio/midi" });
 
-    saveAs(file, `generated-midi-$date.mid`);
-  };
+      saveAs(file, `generated-midi-$date.mid`);
+    }
+  }, [sequence]);
+
+  if (loading) {
+    return <ScreenLoader />;
+  }
 
   return (
-    <Button
-      onClick={exportMidi}
-      label="Export MIDI"
-      // icon={<DocumentDownload color="brand" size="medium" />}
-      margin="small"
-      
-      reverse
-    />
+    <Box height="44px">
+      <Button
+        onClick={() => requestExportMidi()}
+        label="Export MIDI"
+        icon={<DocumentDownload color="brand" size="medium" />}
+        margin="small"
+        reverse
+      />
+    </Box>
   );
 };
