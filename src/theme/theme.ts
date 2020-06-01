@@ -15,7 +15,6 @@ export const theme: ThemeType = {
       extend: "padding: 16px 52px; border-radius: 100px; &:hover { background: #0094F5; };"
     },
     padding: { vertical: "8px", horizontal: "36px" },
-    extend: " &:hover { background: rgba(0, 148, 245, 0.1); } ",
     border: {
       radius: "100px"
     }
