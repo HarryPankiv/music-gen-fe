@@ -31,7 +31,11 @@ export const theme: ThemeType = {
   },
   select: {
     control: {
-      extend: `border-radius: 100px`
+      extend: `border-radius: 100px`,
+      open: ''
     },
+    // container: {
+    //   extend: 'background-color: #303451; color: #ffffff; border-radius: 8px'
+    // }
   }
 }

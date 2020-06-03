@@ -1,0 +1,15 @@
+{
+    "stage": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-musicgen-stage-02739-authRole",
+            "UnauthRoleArn": "arn:aws:iam::225558997672:role/amplify-musicgen-stage-02739-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::225558997672:role/amplify-musicgen-stage-02739-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-musicgen-stage-02739-deployment",
+            "UnauthRoleName": "amplify-musicgen-stage-02739-unauthRole",
+            "StackName": "amplify-musicgen-stage-02739",
+            "StackId": "arn:aws:cloudformation:us-east-1:225558997672:stack/amplify-musicgen-stage-02739/0f292200-a5e1-11ea-b48f-0e58925d1f8e",
+            "AmplifyAppId": "dpveb4ji63on9"
+        }
+    }
+}

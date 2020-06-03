@@ -9,5 +9,5 @@ export const Page = ({ children }) => {
     large: "900px",
   };
 
-  return <Box margin={{top: "80px", bottom: "100px"}} alignSelf="center" width={width[size]}>{children}</Box>;
+  return <Box margin={{top: "100px", bottom: "100px"}} alignSelf="center" width={width[size]}>{children}</Box>;
 };

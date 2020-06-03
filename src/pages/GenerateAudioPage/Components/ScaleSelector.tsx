@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Text, Select } from "grommet";
 import { scalesByMode } from "../../../audio/enums";
 
 export const ScaleSelector = ({ mode, scale, setScale}) => {
+  useEffect(() => {
+    setScale(scalesByMode[mode][0])
+  }, [mode, setScale])
+
   return (
     <Box direction="row" width="100%" fill align="center" margin="10px">
       <Text color="dark-4" margin={{ right: "28px" }}>

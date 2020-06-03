@@ -1,6 +1,6 @@
 export const modes = ["major", "minor"];
 
-export const keys = ['C', 'C#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+export const keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 const majorScales = [
   "ionian",

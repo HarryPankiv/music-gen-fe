@@ -29,10 +29,10 @@ export const GenerateAudioPage = () => {
   };
 
   const { push } = useHistory();
-  const [tonic, setTonic] = useState("C");
-  const [mode, setMode] = useState("major");
-  const [scale, setScale] = useState("ionian");
-  const [tempo, setTempo] = useState(120);
+  const [tonic, setTonic] = useState("A");
+  const [mode, setMode] = useState("minor");
+  const [scale, setScale] = useState("aeolian");
+  const [tempo, setTempo] = useState(130);
   const [chordProgression, setChordProgression] = useState([]);
 
   useUpdateEffect(() => {

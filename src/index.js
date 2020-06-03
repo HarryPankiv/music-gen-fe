@@ -7,6 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 import { theme } from "./theme/theme";
 import { Routes } from "./router/routes";
 
+import './theme/index.scss'
+
 ReactDOM.render(
   <React.StrictMode>
     <Grommet theme={theme} full={true}>

@@ -12,6 +12,7 @@ import { ScreenLoader } from "../../../components/ScreenLoader";
 
 export const ExportMidiButton = () => {
   const match = useRouteMatch<{ id }>();
+  const projectId = match.params.id;
   const {
     data: sequence = { notes: [] },
     loading,
@@ -19,7 +20,7 @@ export const ExportMidiButton = () => {
   } = useRequest(
     {
       prefix: getBaseURL(),
-      url: `/exportMidi?projectId=${match.params.id}`,
+      url: `/exportMidi?projectId=${projectId}`,
       method: "post",
     },
     { manual: true }
@@ -30,7 +31,7 @@ export const ExportMidiButton = () => {
       const midi = sequenceProtoToMidi(sequence);
       const file = new Blob([midi], { type: "audio/midi" });
 
-      saveAs(file, `generated-midi-$date.mid`);
+      saveAs(file, `generated-midi-${projectId}.mid`);
     }
   }, [sequence]);
 
@@ -43,7 +44,7 @@ export const ExportMidiButton = () => {
       <Button
         onClick={() => requestExportMidi()}
         label="Export MIDI"
-        icon={<DocumentDownload color="brand" size="medium" />}
+        icon={<DocumentDownload size="medium" />}
         margin="small"
         reverse
       />
