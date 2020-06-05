@@ -15,6 +15,13 @@ export const GenerateAudioPage = () => {
   const { data, loading, run: requestMusicGenerate } = useRequest(
     (data) => ({
       url: "/generateAudio",
+      header: {
+        "Access-Control-Allow-Headers":
+          "Access-Control-Allow-Methods,Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+      },
       prefix: getBaseURL(),
       method: "post",
       data,

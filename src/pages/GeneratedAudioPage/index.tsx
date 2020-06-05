@@ -20,8 +20,6 @@ export const GeneratedAudio = () => {
     prefix: getBaseURL(),
   });
 
-  console.log(data?.sequence)
-
   if (loading) {
     return <ScreenLoader />;
   }
