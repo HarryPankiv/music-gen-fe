@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { useRequest } from "@umijs/hooks";
+import { useRequest, useUpdateEffect } from "@umijs/hooks";
 import { Heading, Box, Button } from "grommet";
 
 import { ExportMidiButton } from "./Buttons/ExportMidiButton";
@@ -10,21 +10,31 @@ import { PlayerWrapper } from "./Player/PlayerWrapper";
 import { getBaseURL } from "../../api/getBaseURL";
 import { ScreenLoader } from "../../components/ScreenLoader";
 import { Page } from "../../components/Page/Page";
+import { isEmpty, isNil } from "ramda";
 
 export const GeneratedAudio = () => {
   const { push } = useHistory()
   const { params:  { id } } = useRouteMatch<{ id: string}>()
 
-  const { data, loading } = useRequest({
+  const { data, cancel: stopPollingSequence, error } = useRequest({
     url: `/getGeneratedAudio?projectId=${id}`,
     prefix: getBaseURL(),
-  });
+  }, { pollingInterval: 10000 });
+  const [polling, setPolling] = useState(true)
+  const hasSequence = !isNil(data?.sequence) && !isEmpty(data?.sequence)
 
-  if (loading) {
+  useUpdateEffect(() => {
+    if (hasSequence) {
+      stopPollingSequence()
+      setPolling(false)
+    }
+  }, [data])
+
+  if (polling) {
     return <ScreenLoader />;
   }
 
-  if (!data) {
+  if (!polling && error) {
     return <div>
       No audio for this url
     </div>
