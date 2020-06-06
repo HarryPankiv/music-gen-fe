@@ -10,18 +10,12 @@ import { TonicSelector } from "./Components/TonicSelector";
 import { ModeSelector } from "./Components/ModeSelector";
 import { ScaleSelector } from "./Components/ScaleSelector";
 import { TempoRangeInput } from "./Components/TempoRangeInput";
+import { Stub } from "../Stub";
 
 export const GenerateAudioPage = () => {
   const { data, loading, run: requestMusicGenerate } = useRequest(
     (data) => ({
       url: "/generateAudio",
-      header: {
-        "Access-Control-Allow-Headers":
-          "Access-Control-Allow-Methods,Origin, X-Requested-With, Content-Type, Accept, Authorization",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-      },
       prefix: getBaseURL(),
       method: "post",
       data,
@@ -65,6 +59,7 @@ export const GenerateAudioPage = () => {
       <Heading textAlign="center">Create machine learning driven music</Heading>
       {/* <Heading as="small" level="6" color="light-6">using @magenta/music and TensorFlow.js</Heading> */}
 
+      <Stub />
       <TonicSelector keys={keys} tonic={tonic} setTonic={setTonic} />
       <ModeSelector modes={modes} mode={mode} setMode={setMode} />
       <ScaleSelector mode={mode} scale={scale} setScale={setScale} />
