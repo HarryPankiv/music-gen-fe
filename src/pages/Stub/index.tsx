@@ -9,7 +9,7 @@ export const Stub = () => {
       issues. Working on configuration. You can listen already created sequence
       &nbsp;
       <Link
-        to="/generated/09bc96d5-118b-46a7-ad84-1a51d5924f7a"
+        to="/generated/bec459c5-4f0d-423a-a7f1-841bc0d84a0f"
         style={{ textDecoration: "none" }}
       >
         <Text color="brand">here</Text>
